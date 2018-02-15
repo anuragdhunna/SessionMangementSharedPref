@@ -24,7 +24,7 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
 /**
  * @author anuragdhunna
  */
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     EditText username,password;
     Button submitBtn;
