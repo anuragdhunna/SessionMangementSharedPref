@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.anuragdhunna.www.sessionmangementsharedpref.utils.LoginServices;
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText username,password;
     Button submitBtn;
+    RelativeLayout loginForm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +39,24 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.usernameText);
         password = findViewById(R.id.passwordText);
         submitBtn = findViewById(R.id.submit);
+        loginForm = findViewById(R.id.loginForm);
 
         // Check if UserResponse is Already Logged In
         if(SaveSharedPreference.getLoggedStatus(getApplicationContext())) {
             Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
             startActivity(intent);
         } else {
-            submitBtn.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-
-                    userLogin(username.getText().toString(), password.getText().toString());
-                }
-            });
+            loginForm.setVisibility(View.VISIBLE);
         }
+
+
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Make form visible
+
+                userLogin(username.getText().toString(), password.getText().toString());
+            }
+        });
     }
 
     /**
